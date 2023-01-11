@@ -4,11 +4,12 @@ import App from "./App";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
+import { MetaMaskProvider } from "metamask-react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
-    <BrowserRouter>
+  <BrowserRouter>
+    <MetaMaskProvider>
       <App />
-    </BrowserRouter>
-  
+    </MetaMaskProvider>
+  </BrowserRouter>
 );
