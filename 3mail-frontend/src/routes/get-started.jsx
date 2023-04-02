@@ -9,7 +9,25 @@ const GetStarted = () => {
   const connectToMetamask = async () => {
     await connect();
     console.log(account);
+    let encryptionPublicKey;
+    await ethereum
+      .request({
+        method: "eth_getEncryptionPublicKey",
+        params: [account],
+      })
+      .then((result) => {
+        encryptionPublicKey = result;
+      })
+      .catch((error) => {
+        if (error.code === 4001) {
+          console.log("We can't encrypt anything without the key.");
+        } else {
+          console.error(error);
+        }
+      });
+    console.log(encryptionPublicKey);
   };
+
 
   return (
     <div className="flex flex-col w-full justify-between items-center gap-8 overflow-auto p-8">
